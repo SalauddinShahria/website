@@ -13,6 +13,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/', 'App\Http\Controllers\Frontend\PagesController@index')->name('homepage');
+Route::get('/products', 'App\Http\Controllers\Frontend\PagesController@products')->name('allProducts');
+Route::get('/products/details', 'App\Http\Controllers\Frontend\PagesController@details')->name('details');
+Route::get('/login', 'App\Http\Controllers\Frontend\PagesController@login')->name('login');
+Route::get('/registration', 'App\Http\Controllers\Frontend\PagesController@registration')->name('registration');
+
+
 /*
 |--------------------------------------------------------------------------
 | Backend Admin Routes are here
@@ -27,7 +34,7 @@ use Illuminate\Support\Facades\Route;
 Route::group(['prefix' => 'admin'], function(){
 	Route::get('/dashboard', 'App\Http\Controllers\Backend\PagesController@index')->name('dashboard');
 
-	//Brnd Route for CRUD
+	//Brand Route for CRUD
 	Route::group(['prefix' => 'brand'], function(){
 		Route::get('/manage', 'App\Http\Controllers\Backend\BrandController@index')->name('brand.manage');
 
@@ -58,6 +65,39 @@ Route::group(['prefix' => 'admin'], function(){
 		Route::get('/edit{id}', 'App\Http\Controllers\Backend\productController@edit')->name('product.edit');
 		Route::post('/edit{id}', 'App\Http\Controllers\Backend\productController@update')->name('product.update');
 		Route::post('/delete{id}', 'App\Http\Controllers\Backend\productController@destroy')->name('product.destroy');
+	});
+
+	//Division
+	Route::group(['prefix' => 'division'], function(){
+		Route::get('/manage', 'App\Http\Controllers\Backend\DivisionController@index')->name('division.manage');
+
+		Route::get('/create', 'App\Http\Controllers\Backend\DivisionController@create')->name('division.create');
+		Route::post('/store', 'App\Http\Controllers\Backend\DivisionController@store')->name('division.store');
+		Route::get('/edit{id}', 'App\Http\Controllers\Backend\DivisionController@edit')->name('division.edit');
+		Route::post('/edit{id}', 'App\Http\Controllers\Backend\DivisionController@update')->name('division.update');
+		Route::post('/delete{id}', 'App\Http\Controllers\Backend\DivisionController@destroy')->name('division.destroy');
+	});
+
+	//District
+	Route::group(['prefix' => 'district'], function(){
+		Route::get('/manage', 'App\Http\Controllers\Backend\DistrictController@index')->name('district.manage');
+
+		Route::get('/create', 'App\Http\Controllers\Backend\DistrictController@create')->name('district.create');
+		Route::post('/store', 'App\Http\Controllers\Backend\DistrictController@store')->name('district.store');
+		Route::get('/edit{id}', 'App\Http\Controllers\Backend\DistrictController@edit')->name('district.edit');
+		Route::post('/edit{id}', 'App\Http\Controllers\Backend\DistrictController@update')->name('district.update');
+		Route::post('/delete{id}', 'App\Http\Controllers\Backend\DistrictController@destroy')->name('district.destroy');
+	});
+
+	//Slider
+	Route::group(['prefix' => 'slider'], function(){
+		Route::get('/manage', 'App\Http\Controllers\Backend\SliderController@index')->name('slider.manage');
+
+		Route::get('/create', 'App\Http\Controllers\Backend\SliderController@create')->name('slider.create');
+		Route::post('/store', 'App\Http\Controllers\Backend\SliderController@store')->name('slider.store');
+		Route::get('/edit{id}', 'App\Http\Controllers\Backend\SliderController@edit')->name('slider.edit');
+		Route::post('/edit{id}', 'App\Http\Controllers\Backend\SliderController@update')->name('slider.update');
+		Route::post('/delete{id}', 'App\Http\Controllers\Backend\SliderController@destroy')->name('slider.destroy');
 	});
 
 });

@@ -24,4 +24,5 @@ class Category extends Model
     {
     	return $this->belongsTo(Category::class, 'is_parent');
     }
+    
 }

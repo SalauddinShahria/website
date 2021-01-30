@@ -20,7 +20,7 @@ class BrandController extends Controller
     public function index()
     {
         $brands = Brand::orderBy('name', 'asc')->get();
-        return view('backend/pages/brand/manage', compact('brands'));
+        return view('backend.pages.brand.manage', compact('brands'));
     }
 
     /**
@@ -30,7 +30,7 @@ class BrandController extends Controller
      */
     public function create()
     {
-        return view('backend/pages/brand/create');
+        return view('backend.pages.brand.create');
     }
 
     /**
@@ -93,7 +93,7 @@ class BrandController extends Controller
 
         if( !is_null($brand) )
         {
-            return view('backend/pages/brand/edit', compact('brand'));
+            return view('backend.pages.brand.edit', compact('brand'));
         }
         else{
             return redirect()->route('brand.manage');
